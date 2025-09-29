@@ -43,7 +43,7 @@ public class Ticket {
 
 
     // constructors
-    Ticket() {}
+    public Ticket() {}
 
     Ticket(Customer customer, Flight flight) {
         this.customer = customer;
