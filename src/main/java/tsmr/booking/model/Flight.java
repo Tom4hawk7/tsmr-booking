@@ -1,23 +1,17 @@
 package tsmr.booking.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
 @Entity
 public class Flight {
-    // properties
-    @Id @GeneratedValue
-    private Long id;
 
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Ticket> tickets = new HashSet<>();
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String airline;
     private int capacity;
@@ -27,8 +21,12 @@ public class Flight {
     private LocalDateTime depart;
     private LocalDateTime arrival;
 
+    // When serializing a Flight, include its tickets
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("flight-tickets")
+    private Set<Ticket> tickets = new HashSet<>();
 
-    // getters and setters
+    // ── getters / setters ──
     public Long getId() { return id; }
 
     public String getAirline() { return airline; }
@@ -55,8 +53,7 @@ public class Flight {
     public Set<Ticket> getTickets() { return tickets; }
     public void setTickets(Set<Ticket> tickets) { this.tickets = tickets; }
 
-
-    // helper functions
+    // helper methods
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
         ticket.setFlight(this);
@@ -67,7 +64,5 @@ public class Flight {
         ticket.setFlight(null);
     }
 
-
-    // constructor
-    public Flight() {}
+    public Flight() { }
 }

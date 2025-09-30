@@ -1,21 +1,16 @@
 package tsmr.booking.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 public class Customer {
-    // properties
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -23,10 +18,12 @@ public class Customer {
     private String phone;
     private String email;
 
+    // When serializing a Customer, include its tickets
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("customer-tickets")
     private Set<Ticket> tickets = new HashSet<>();
 
-    // getters and setters
+    // ── getters / setters ──
     public Long getId() { return id; }
 
     public String getName() { return name; }
@@ -34,7 +31,7 @@ public class Customer {
 
     public LocalDate getDob() { return dob; }
     public void setDob(LocalDate dob) { this.dob = dob; }
-    
+
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
@@ -42,26 +39,7 @@ public class Customer {
     public void setEmail(String email) { this.email = email; }
 
     public Set<Ticket> getTickets() { return tickets; }
-    public void setTickets(Set<Ticket> tickets) { this.tickets = tickets;  }
+    public void setTickets(Set<Ticket> tickets) { this.tickets = tickets; }
 
-    // helper functions
-    public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
-        ticket.setCustomer(this);
-    }
-
-    public void removeTicket(Ticket ticket) {
-        tickets.remove(ticket);
-        ticket.setCustomer(null);
-    }
-
-    // constructors
-    public Customer() {}
-
-    public Customer(String name, LocalDate dob, String phone, String email) {
-        this.name = name;
-        this.dob = dob;
-        this.phone = phone;
-        this.email = email;
-    }
+    public Customer() { }
 }
