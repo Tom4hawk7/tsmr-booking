@@ -15,11 +15,32 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public Optional<Customer> findById(Long id) {
+    // create
+    public Customer createCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    // read
+    public Optional<Customer> getCustomer(Long id) {
         return customerRepository.findById(id);
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 
     public Optional<Customer> findByEmail(String email) {
         return customerRepository.findByEmail(email);
     }
+
+    // update
+
+   
+
+
+
+    // delete
+
+
+
 }
