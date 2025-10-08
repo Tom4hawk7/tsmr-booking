@@ -1,5 +1,10 @@
 package tsmr.booking.service;
 
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import tsmr.booking.model.Customer;
 import tsmr.booking.repository.CustomerRepository;
 
 @Service

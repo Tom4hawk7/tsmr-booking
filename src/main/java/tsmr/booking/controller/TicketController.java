@@ -1,6 +1,10 @@
 package tsmr.booking.controller;
 
 import tsmr.booking.service.TicketService;
+import tsmr.booking.model.Ticket;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/tickets")

@@ -1,6 +1,11 @@
 package tsmr.booking.service;
 
-import tsmr.booking.repository.ticketRepository;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import tsmr.booking.model.Ticket;
+import tsmr.booking.repository.TicketRepository;
 
 @Service
 public class TicketService {
