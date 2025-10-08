@@ -10,33 +10,33 @@ import java.util.Optional;
 
 @Service
 public class FlightService {
-    private final FlightRepository flightRepository;
+    private final FlightRepository repository;
 
-    public FlightService(FlightRepository flightRepository) {
-        this.flightRepository = flightRepository;
+    public FlightService(FlightRepository repository) {
+        this.repository = repository;
     }
 
     // create
     public Flight createFlight(Flight flight) {
-        return flightRepository.save(flight);
+        return repository.save(flight);
     }
 
     // read
     public Optional<Flight> getFlight(Long id) {
-        return flightRepository.findById(id);
+        return repository.findById(id);
     }
 
     public List<Flight> getAllFlights() {
-        return flightRepository.findAll();
+        return repository.findAll();
     }
 
     public List<Flight> searchFlights(String location, String destination) {
-        return flightRepository.findByLocationAndDestination(location, destination);
+        return repository.findByLocationAndDestination(location, destination);
     }
 
     // update
-     public Flight updateFlight(Long id, Flight updatedFlight) {
-        return repository.findById().map(flight -> {
+    public Flight updateFlight(Long id, Flight updatedFlight) {
+        return repository.findById(id).map(flight -> {
             flight.setLocation(updatedFlight.getLocation());
             flight.setDestination(updatedFlight.getLocation());
             flight.setDepart(updatedFlight.getDepart());
@@ -45,6 +45,8 @@ public class FlightService {
         }).orElseThrow(() -> new RuntimeException("Flight not found with id " + id));
     }
 
-
     // delete
+    public void deleteFlight(Long id) {
+        repository.deleteById(id);
+    }
 }
