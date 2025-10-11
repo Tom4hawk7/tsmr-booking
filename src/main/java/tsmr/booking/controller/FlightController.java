@@ -16,7 +16,7 @@ import tsmr.booking.model.Flight;
 import tsmr.booking.service.FlightService;
 
 @RestController
-@RequestMapping("/api/flights")
+@RequestMapping("/flights")
 public class FlightController {
     private final FlightService flightService;
 

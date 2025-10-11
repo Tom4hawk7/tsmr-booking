@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/tickets")
+@RequestMapping("/tickets")
 public class TicketController {
     private final TicketService ticketService;
 
@@ -45,7 +45,7 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.getTicketsByFlight(flightId));
     }
 
-    @GetMapping("/customer/{id}/flight/{id}")
+    @GetMapping("/customer/{id1}/flight/{id2}")
     public ResponseEntity<Optional<Ticket>> getTicketByCustomerAndFlight(@PathVariable Long customerId, @PathVariable Long flightId) {
         return ResponseEntity.ok(ticketService.getTicketByCustomerAndFlight(customerId, flightId));
     }
@@ -60,7 +60,7 @@ public class TicketController {
         }
     }
 
-    @PutMapping("/customer/{id}/flight/{id}")
+    @PutMapping("/customer/{id1}/flight/{id2}")
     public ResponseEntity<Ticket> updateTicketByCustomerAndFlight(@PathVariable Long customerId, @PathVariable Long flightId, @RequestBody Ticket ticket) {
         try {
             return ResponseEntity.ok(ticketService.updateTicketByCustomerAndFlight(customerId, flightId, ticket));

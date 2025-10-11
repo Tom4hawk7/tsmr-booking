@@ -16,7 +16,7 @@ import tsmr.booking.model.Customer;
 import tsmr.booking.service.CustomerService;
 
 @RestController
-@RequestMapping("/api/customers")
+@RequestMapping("/customers")
 public class CustomerController {
     private final CustomerService customerService;
 
