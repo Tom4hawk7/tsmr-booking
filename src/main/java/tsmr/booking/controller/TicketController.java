@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
@@ -23,6 +24,7 @@ public class TicketController {
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
         return ResponseEntity.ok(ticketService.createTicket(ticket));
     }
+    
 
     // read
     @GetMapping

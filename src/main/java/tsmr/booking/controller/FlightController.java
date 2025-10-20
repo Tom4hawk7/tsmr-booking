@@ -30,6 +30,11 @@ public class FlightController {
         return ResponseEntity.ok(flightService.createFlight(flight));
     }
 
+    // @PostMapping("/add-ticket/{id}")
+    // public ResponseEntity<Flight> addTicket(@PathVariable Long flightId, @RequestBody Ticket ticket) {
+    //     return ResponseEntity.ok(flightService.addTicket(flightId, ticket));
+    // }
+
     // read
     @GetMapping
     public ResponseEntity<List<Flight>> getAllFlights() {

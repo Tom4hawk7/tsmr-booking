@@ -2,6 +2,8 @@ package tsmr.booking.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,9 +19,11 @@ public class Ticket {
     private Long id;
 
     @ManyToOne @JoinColumn(name = "customer_id", nullable = false)
+    @JsonBackReference("customer-tickets")
     private Customer customer;
 
     @ManyToOne @JoinColumn(name = "flight_id", nullable = false)
+    @JsonBackReference("flight-tickets")
     private Flight flight;
 
     private String seat;
