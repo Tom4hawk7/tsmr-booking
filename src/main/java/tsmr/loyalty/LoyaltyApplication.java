@@ -1,13 +1,13 @@
-package tsmr.booking;
+package tsmr.loyalty;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookingApplication {
+public class LoyaltyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookingApplication.class, args);
+		SpringApplication.run(LoyaltyApplication.class, args);
 	}
 
 }
