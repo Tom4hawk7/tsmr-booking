@@ -39,6 +39,9 @@ public class FlightService {
     // update
     public Flight updateFlight(Long id, Flight updatedFlight) {
         return flightRepository.findById(id).map(flight -> {
+            flight.setAirline(updatedFlight.getAirline());
+            flight.setCapacity(updatedFlight.getCapacity());
+            flight.setPrice(updatedFlight.getPrice());
             flight.setLocation(updatedFlight.getLocation());
             flight.setDestination(updatedFlight.getLocation());
             flight.setDepart(updatedFlight.getDepart());
