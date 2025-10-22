@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>tsmr</groupId>
-    <artifactId>booking</artifactId>
+    <artifactId>loyalty-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>booking</name>
     <description>Booking system</description>
