@@ -7,7 +7,7 @@ Run specific service: `mvn -pl module-name spring-boot:run`.
 Modules:
 
 - auth-service
-- book-service
+- booking-service
 - loyalty-service
 - query-service
 

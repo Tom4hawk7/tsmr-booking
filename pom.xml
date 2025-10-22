@@ -20,7 +20,7 @@
 	
 	<modules>
 		<module>query-service</module>
-		<!-- <module>book-service</module> -->
+		<!-- <module>booking-service</module> -->
 		<!-- <module>loyalty-service</module> -->
 		<!-- <module>auth-service</module> -->
 	</modules>
