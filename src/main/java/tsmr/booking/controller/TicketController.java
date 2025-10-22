@@ -38,17 +38,17 @@ public class TicketController {
     }
 
     @GetMapping("/customer/{id}")
-    public ResponseEntity<List<Ticket>> getTicketsByCustomer(@PathVariable Long customerId) {
+    public ResponseEntity<List<Ticket>> getTicketsByCustomer(@PathVariable("id") Long customerId) {
         return ResponseEntity.ok(ticketService.getTicketsByCustomer(customerId));
     }
 
     @GetMapping("/flight/{id}")
-    public ResponseEntity<List<Ticket>> getTicketsByFlight(@PathVariable Long flightId) {
+    public ResponseEntity<List<Ticket>> getTicketsByFlight(@PathVariable("id") Long flightId) {
         return ResponseEntity.ok(ticketService.getTicketsByFlight(flightId));
     }
 
     @GetMapping("/customer/{id1}/flight/{id2}")
-    public ResponseEntity<Optional<Ticket>> getTicketByCustomerAndFlight(@PathVariable Long customerId, @PathVariable Long flightId) {
+    public ResponseEntity<Optional<Ticket>> getTicketByCustomerAndFlight(@PathVariable("id1") Long customerId, @PathVariable("id2") Long flightId) {
         return ResponseEntity.ok(ticketService.getTicketByCustomerAndFlight(customerId, flightId));
     }
 
@@ -63,7 +63,7 @@ public class TicketController {
     }
 
     @PutMapping("/customer/{id1}/flight/{id2}")
-    public ResponseEntity<Ticket> updateTicketByCustomerAndFlight(@PathVariable Long customerId, @PathVariable Long flightId, @RequestBody Ticket ticket) {
+    public ResponseEntity<Ticket> updateTicketByCustomerAndFlight(@PathVariable("id1") Long customerId, @PathVariable("id2") Long flightId, @RequestBody Ticket ticket) {
         try {
             return ResponseEntity.ok(ticketService.updateTicketByCustomerAndFlight(customerId, flightId, ticket));
         } catch (RuntimeException e) {
