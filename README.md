@@ -1,128 +1,163 @@
-# Querying / Booking operations
-
-## Setting up microservice
+# Setting up microservice
 
 First, make sure current directory is the root level of the tsmr-booking folder.
-Then run the following command: `mvn spring-boot:run`
+Run all services at once: `mvn spring-boot:run`.
+Run specific service: `mvn -pl module-name spring-boot:run`.
 
-## Interacting with microservice
+Modules:
 
-### Create
+- auth-service
+- book-service
+- loyalty-service
+- query-service
 
-#### Customer
+# query-service
+
+## Create
+
+### Customer
+
 Create a customer
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/customers' -Method Post ` -ContentType 'application/json' ` -Body '{"name":"Alice","email":"alice@example.com"}'
 ```
 
-#### Flight
+### Flight
+
 Create a flight
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/flights' -Method Post -ContentType 'application/json' -Body '{"airline":"AcmeAir","flightNumber":"AC123","location":"LAX","destination":"JFK","depart":"2025-12-01T09:00:00","arrival":"2025-12-01T17:00:00"}'
 ```
 
-#### Ticket
+### Ticket
+
 Create a ticket
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets' -Method Post -ContentType 'application/json' `
   -Body '{"customer":{"id":1},"flight":{"id":1},"seat":"12A","bookingDate":"2025-12-01"}'
 ```
 
+## Read
 
-### Read
+### Customer
 
-#### Customer
 Get all customers
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/customers' -Method Get
 ```
+
 Get a specific customer by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/customers/1' -Method Get
 ```
 
-#### Flight
+### Flight
+
 Get all flights
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/flights' -Method Get
 ```
 
 Get a specific flight by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/flights/1' -Method Get
 ```
 
-#### Ticket
+### Ticket
+
 Get all tickets
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets' -Method Get
 ```
 
 Get a specific ticket by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/1' -Method Get
 ```
 
 Get a specific ticket by customer id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/customer/1' -Method Get
 ```
 
 Get a specific ticket by flight id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/flight/1' -Method Get
 ```
 
 Get a specific ticket by customer and flight id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/customer/1/flight/1' -Method Get
 ```
 
+## Update
 
-### Update
+### Customer
 
-#### Customer
 Update a specific customer by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/customers/1' -Method Put `
   -ContentType 'application/json' `
   -Body '{"name":"John","email":"john@example.com"}'
 ```
 
-#### Flight
+### Flight
+
 Update a specific flight by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/flights/1' -Method Put -ContentType 'application/json' -Body '{"airline":"Jetstar","flightNumber":"BOC3","location":"LAX","destination":"JFK","depart":"2025-12-01T10:00:00","arrival":"2025-12-01T18:00:00"}'
 ```
 
-#### Ticket
+### Ticket
+
 Update a specific ticket by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/1' -Method Put -ContentType 'application/json' -Body '{"seat":"13D", "bookingDate":"2025-04-06"}'
 ```
 
 Update a specific ticket by customer id and flight id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/customer/1/flight/1' -Method Put -ContentType 'application/json' -Body '{"seat":"26T", "bookingDate":"2025-04-02"}'
 ```
 
+## Delete
 
-### Delete
+### Customer
 
-#### Customer
 Delete a specific customer by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/customers/1' -Method Delete
 ```
 
-#### Flight
+### Flight
+
 Delete a specific flight by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/flights/1' -Method Delete
 ```
 
-#### Ticket
+### Ticket
+
 Delete a specific ticket by id
+
 ```
 Invoke-RestMethod -Uri 'http://localhost:8080/tickets/1' -Method Delete
 ```
