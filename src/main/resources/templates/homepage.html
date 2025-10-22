@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        .token {
+            word-break: break-word;
+            font-size: 0.9rem;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h2 th:text="${message}">Welcome!</h2>
+
+<div class="token" th:if="${token}" th:text="'JWT Token: ' + ${token}"></div>
+
+<p><a href="/signin">Log out</a></p>
+</body>
+</html>
