@@ -10,7 +10,7 @@ import java.util.Set;
 public class Flight {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String airline;
@@ -21,7 +21,6 @@ public class Flight {
     private LocalDateTime depart;
     private LocalDateTime arrival;
 
-    // When serializing a Flight, include its tickets
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("flight-tickets")
     private Set<Ticket> tickets = new HashSet<>();
@@ -53,7 +52,7 @@ public class Flight {
     public Set<Ticket> getTickets() { return tickets; }
     public void setTickets(Set<Ticket> tickets) { this.tickets = tickets; }
 
-    // helper methods
+    // ── helper methods ──
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
         ticket.setFlight(this);

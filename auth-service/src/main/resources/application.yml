@@ -1,7 +1,10 @@
 server:
-  port: 8080
+  port: 8085  # Avoids conflict with other services
 
 spring:
+  application:
+    name: auth-service
+
   datasource:
     url: jdbc:h2:mem:authdb
     driver-class-name: org.h2.Driver
@@ -12,6 +15,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
 
   cloud:
     stream:
@@ -25,3 +31,15 @@ spring:
       kafka:
         binder:
           brokers: localhost:9092
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.apache.kafka: INFO
+    com.travelbooking.userservice: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

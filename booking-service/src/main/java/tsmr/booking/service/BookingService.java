@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tsmr.booking.model.Customer;
 import tsmr.booking.model.Flight;
 import tsmr.booking.model.Ticket;
+import tsmr.booking.payload.BookingRequest;
 import tsmr.booking.repository.CustomerRepository;
 import tsmr.booking.repository.FlightRepository;
 import tsmr.booking.repository.TicketRepository;
@@ -32,8 +33,8 @@ public class BookingService {
     }
 
     @Transactional
-    public Ticket bookFlight(Long customerId, Long flightId) {
-        Customer customer = customerRepo.findById(customerId)
+    public Ticket bookFlight(BookingRequest request, Long flightId, String customerEmail) {
+        Customer customer = customerRepo.findByEmail(customerEmail)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found"));
 
         Flight flight = flightRepo.findById(flightId)
@@ -45,9 +46,11 @@ public class BookingService {
         }
 
         Ticket ticket = new Ticket();
+        ticket.setBookingDate(LocalDate.now());
+        ticket.setSeatNumber(request.getSeatNumber());   // ✅ Set seat number
+        ticket.setClassType(request.getClassType());     // ✅ Set class type
         ticket.setCustomer(customer);
         ticket.setFlight(flight);
-        ticket.setBookingDate(LocalDate.now());
 
         return ticketRepo.save(ticket);
     }

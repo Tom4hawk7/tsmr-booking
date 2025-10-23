@@ -8,10 +8,13 @@ import java.time.LocalDate;
 public class Ticket {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate bookingDate;
+
+    private String seatNumber;     // ✅ Added
+    private String classType;      // ✅ Added
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -28,6 +31,12 @@ public class Ticket {
 
     public LocalDate getBookingDate() { return bookingDate; }
     public void setBookingDate(LocalDate bookingDate) { this.bookingDate = bookingDate; }
+
+    public String getSeatNumber() { return seatNumber; }
+    public void setSeatNumber(String seatNumber) { this.seatNumber = seatNumber; }
+
+    public String getClassType() { return classType; }
+    public void setClassType(String classType) { this.classType = classType; }
 
     public Customer getCustomer() { return customer; }
     public void setCustomer(Customer customer) { this.customer = customer; }
