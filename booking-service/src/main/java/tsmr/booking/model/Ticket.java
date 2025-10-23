@@ -13,8 +13,8 @@ public class Ticket {
 
     private LocalDate bookingDate;
 
-    private String seatNumber;     // ✅ Added
-    private String classType;      // ✅ Added
+    private String seatNumber;     
+    private String classType;      
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

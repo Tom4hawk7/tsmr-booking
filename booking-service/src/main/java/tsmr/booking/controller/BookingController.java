@@ -24,7 +24,6 @@ public class BookingController {
         this.customerService = customerService;
     }
 
-    // ✅ Book a flight with seat/class info
     @PostMapping("/bookings")
     public ResponseEntity<Ticket> bookFlight(@RequestBody BookingRequest request,
                                              @RequestParam Long flightId,
