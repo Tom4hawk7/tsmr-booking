@@ -1,8 +1,14 @@
 # Setting up microservice
 
 First, make sure current directory is the root level of the tsmr-booking folder.
-Run all services at once: `mvn spring-boot:run`.
-Run specific service: `mvn -pl module-name spring-boot:run`.
+\nRun all services at once: `mvn spring-boot:run`.
+\nRun specific service: `mvn -pl module-name spring-boot:run`.
+
+\n\nSetup AI API Key:
+
+```bash
+export OPENAI_API_KEY="<YOUR_KEY>"
+```
 
 Modules:
 
@@ -164,16 +170,7 @@ Invoke-RestMethod -Uri 'http://localhost:8080/tickets/1' -Method Delete
 
 # Booking Service
 
-!!!!Make sure other services are not currently running!!!!
-(End existing springboot sessions)
-
 NOTE: This service required openAI api key to be run
-
-### set openai API key using
-
-```bash
-export OPENAI_API_KEY="<YOUR_KEY>"
-```
 
 Start booking service using
 
