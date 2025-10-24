@@ -1,10 +1,10 @@
 # Setting up microservice
 
 First, make sure current directory is the root level of the tsmr-booking folder.
-\nRun all services at once: `mvn spring-boot:run`.
-\nRun specific service: `mvn -pl module-name spring-boot:run`.
+Run all services at once: `mvn spring-boot:run`.
+Run specific service: `mvn -pl module-name spring-boot:run`.
 
-\n\nSetup AI API Key:
+Setup AI API Key:
 
 ```bash
 export OPENAI_API_KEY="<YOUR_KEY>"
